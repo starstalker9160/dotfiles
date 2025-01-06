@@ -1,0 +1,14 @@
+2024/12/11-14:26:38.169 2147 Reusing MANIFEST /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_tryhackme.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/12/11-14:26:38.169 2147 Recovering log #10
+2024/12/11-14:26:38.169 2147 Reusing old log /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_tryhackme.com_0.indexeddb.leveldb/000010.log 
+2024/12/11-14:26:38.169 2147 Delete type=2 #8
+2024/12/11-14:26:38.180 2147 Level-0 table #15: started
+2024/12/11-14:26:38.181 2147 Level-0 table #15: 511 bytes OK
+2024/12/11-14:26:38.183 2147 Delete type=0 #10
+2024/12/11-14:26:38.183 2147 Manual compaction at level-0 from '\x00\x05\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at '\x00\x05\x00\x00\x05' @ 146 : 1
+2024/12/11-14:26:38.183 2147 Compacting 1@0 + 1@1 files
+2024/12/11-14:26:38.185 2147 Generated table #16@0: 9 keys, 475 bytes
+2024/12/11-14:26:38.185 2147 Compacted 1@0 + 1@1 files => 475 bytes
+2024/12/11-14:26:38.187 2147 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/12/11-14:26:38.187 2147 Delete type=2 #15
+2024/12/11-14:26:38.187 2147 Manual compaction at level-0 from '\x00\x05\x00\x00\x05' @ 146 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at (end)

@@ -1,0 +1,12 @@
+2024/12/10-12:13:19.283 28e1 Reusing MANIFEST /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_open.spotify.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/12/10-12:13:19.284 28e1 Recovering log #37
+2024/12/10-12:13:19.293 28e1 Reusing old log /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_open.spotify.com_0.indexeddb.leveldb/000037.log 
+2024/12/10-12:13:19.294 28e1 Delete type=2 #36
+2024/12/10-12:13:19.294 28e1 Delete type=2 #38
+2024/12/10-12:13:20.748 28f9 Level-0 table #42: started
+2024/12/10-12:13:20.765 28f9 Level-0 table #42: 4142406 bytes OK
+2024/12/10-12:13:20.768 28f9 Delete type=0 #37
+2024/12/10-12:13:21.172 28f9 Compacting 1@1 + 1@2 files
+2024/12/10-12:13:21.178 28f9 Generated table #43@1: 1042 keys, 225084 bytes
+2024/12/10-12:13:21.178 28f9 Compacted 1@1 + 1@2 files => 225084 bytes
+2024/12/10-12:13:21.180 28f9 compacted to: files[ 0 0 1 0 0 0 0 ]
