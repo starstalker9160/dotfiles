@@ -1,9 +1,0 @@
-2024/11/24-09:38:40.633 19b1 Reusing MANIFEST /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_www.reddit.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/11/24-09:38:40.634 19b1 Recovering log #11
-2024/11/24-09:38:40.635 19b1 Reusing old log /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_www.reddit.com_0.indexeddb.leveldb/000011.log 
-2024/11/24-09:40:03.045 19b2 Compacting 1@1 + 1@2 files
-2024/11/24-09:40:03.062 19b2 Generated table #14@1: 119 keys, 13654 bytes
-2024/11/24-09:40:03.062 19b2 Compacted 1@1 + 1@2 files => 13654 bytes
-2024/11/24-09:40:03.065 19b2 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/11/24-09:40:03.066 19b2 Delete type=2 #12
-2024/11/24-09:40:03.066 19b2 Delete type=2 #9

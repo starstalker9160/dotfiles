@@ -1,6 +1,0 @@
-2024/12/10-13:35:49.005 28d2 Creating DB /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_medium.com_0.indexeddb.leveldb since it was missing.
-2024/12/10-13:35:49.010 28d2 Reusing MANIFEST /home/starstalker9160/.config/google-chrome/Default/IndexedDB/https_medium.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/12/10-13:38:12.377 28e0 Level-0 table #5: started
-2024/12/10-13:38:12.384 28e0 Level-0 table #5: 14319 bytes OK
-2024/12/10-13:38:12.388 28e0 Delete type=0 #3
-2024/12/10-13:38:12.388 28e0 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
