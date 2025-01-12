@@ -39,6 +39,8 @@ entry {
 listview {
 	lines: 5;
 	columns: 1;
+	cycle: true;
+	scrollbar: false;
 }
 
 element {
