@@ -10,13 +10,18 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 alias cat='bat --color=always'
+alias v='nvim'
 
 export HYPRSHOT_DIR=~/Pictures/Screenshots/
 
 # ----- LS -----
 
 alias ls='ls --color=auto'
+alias la='ls -la --color=auto'
 alias ll='tree -L 1 --noreport'
+
+# ----- GIT -----
+alias gc='git clone'
 
 # ----- FZF -----
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
