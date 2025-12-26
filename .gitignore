@@ -1,6 +1,7 @@
 *
 
 !hypr/**/*
+!hyprshell/**/*
 !kitty/*
 !neofetch/**/*
 !.bashrc
