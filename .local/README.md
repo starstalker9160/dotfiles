@@ -1,1 +1,0 @@
-Put these files inside `~/.local/bin/`
