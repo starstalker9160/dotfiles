@@ -7,4 +7,5 @@
 !neofetch/*
 !hyprshell/*
 
+.bashrc
 install.sh
