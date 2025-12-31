@@ -22,6 +22,7 @@ alias ll='eza --level 1 --color=always --color-scale=all --icons=always --tree'
 # ----- GIT -----
 alias gc='git clone'
 alias gd='git diff'
+alias gs='git status'
 
 # ----- FZF -----
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
