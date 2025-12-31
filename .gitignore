@@ -1,1 +1,10 @@
+*
 
+!hypr/**/*
+
+!tmux/*
+!kitty/*
+!neofetch/*
+!hyprshell/*
+
+install.sh
