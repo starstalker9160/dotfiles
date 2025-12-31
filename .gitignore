@@ -4,6 +4,7 @@
 !hyprshell/**/*
 !kitty/*
 !neofetch/**/*
+!tmux/*
 !.bashrc
 !install.sh
 !.git*
