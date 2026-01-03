@@ -8,4 +8,5 @@
 !hyprshell/*
 
 .bashrc
+winupdatelist.txt
 install.sh
