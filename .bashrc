@@ -13,6 +13,7 @@ alias cat='bat --color=always'
 alias v='nvim'
 
 export HYPRSHOT_DIR=~/Pictures/Screenshots/
+export PATH="$HOME/.local/bin:$PATH"
 
 # ----- LS -----
 alias ls='ls --color=auto'
