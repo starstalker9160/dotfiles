@@ -21,7 +21,6 @@ alias v='nvim'
 # ----- LS -----
 alias ls='ls --color=auto'
 alias la='ls -la --color=auto'
-alias ll='eza --level 1 --color=always --color-scale=all --icons=always --tree'
 
 # ----- GIT -----
 alias gc='git clone'
@@ -47,7 +46,12 @@ _fzf_compgen_dir() {
 	fd --type=d --hidden --exclude .git . "$1"
 }
 
-# ----- BAT -----
+# ----- FUNCS -----
 batdiff() {
     git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff
 }
+
+ll() {
+	eza --level "${1:-1}" --color=always --color-scale=all --icons=always --tree
+}
+
