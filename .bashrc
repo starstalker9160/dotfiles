@@ -11,7 +11,7 @@ export HYPRSHOT_DIR=~/Pictures/Screenshots/
 export PATH="$HOME/.local/bin:$PATH"
 
 # ----- NOTE -----
-alias oo='cd $HOME/notes/notes/'
+alias oo='cd $HOME/notes/notes/ && nvim && cd - >/dev/null'
 
 # ----- ALIAS -----
 alias grep='grep --color=auto'
@@ -25,8 +25,9 @@ alias ll='eza --level 1 --color=always --color-scale=all --icons=always --tree'
 
 # ----- GIT -----
 alias gc='git clone'
-alias gd='git diff'
 alias gs='git status'
+
+alias gd='batdiff'
 
 # ----- FZF -----
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
@@ -44,4 +45,9 @@ _fzf_compgen_path() {
 
 _fzf_compgen_dir() {
 	fd --type=d --hidden --exclude .git . "$1"
+}
+
+# ----- BAT -----
+batdiff() {
+    git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff
 }
