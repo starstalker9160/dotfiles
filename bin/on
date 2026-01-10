@@ -6,9 +6,9 @@ if [ -z "$1" ]; then
 fi
 
 fn=$(date "+%Y-%m-%d")_$(echo "$@" | tr ' ' '-').md
-cd "$HOME/notes/inbox" || exit 1
+cd "$HOME/notes/notes/inbox" || exit 1
 
-fp="$HOME/notes/inbox/${fn}"
+fp="$HOME/notes/notes/inbox/${fn}"
 
 touch "$fp"
 nvim "$fp"

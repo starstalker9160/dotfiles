@@ -5,15 +5,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
-alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
-
-alias cat='bat --color=always'
-alias v='nvim'
 
 export HYPRSHOT_DIR=~/Pictures/Screenshots/
 export PATH="$HOME/.local/bin:$PATH"
+
+# ----- NOTE -----
+alias oo='cd $HOME/notes/notes/'
+
+# ----- ALIAS -----
+alias grep='grep --color=auto'
+alias cat='bat --color=always'
+alias v='nvim'
 
 # ----- LS -----
 alias ls='ls --color=auto'
