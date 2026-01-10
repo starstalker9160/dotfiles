@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-  echo "Error: File name required"
-  exit 1
+	echo "Error: File name required"
+	exit 1
 fi
 
-fn=$(date "+%Y-%m-%d")_$(echo "$*" | tr ' ' '-').md
-echo $fn
-echo "Error: no file path set"
-exit 0
-# set a vault path
-cd "" || exit
-touch "inbox/${fn}"
-nvim "inbox/${fn}"
+fn=$(date "+%Y-%m-%d")_$(echo "$@" | tr ' ' '-').md
+cd "$HOME/notes/inbox" || exit 1
+
+fp="$HOME/notes/inbox/${fn}"
+
+touch "$fp"
+nvim "$fp"
