@@ -17,6 +17,7 @@ alias oo='cd $HOME/notes/notes/ && nvim && cd - >/dev/null'
 alias grep='grep --color=auto'
 alias cat='bat --color=always'
 alias v='nvim'
+alias t='tmux'
 
 # ----- LS -----
 alias ls='ls --color=auto'
