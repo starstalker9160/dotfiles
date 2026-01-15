@@ -1,14 +1,20 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [ -z "$1" ]; then
-	echo "Error: File name required"
-	exit 1
+    read -p "Note name: " note_name
+    if [ -z "$note_name" ]; then
+        echo "Error: Note name required"
+        exit 1
+    fi
+else
+    note_name="$*"
 fi
 
-fn=$(date "+%Y-%m-%d")_$(echo "$@" | tr ' ' '-').md
+fn="$(date "+%Y-%m-%d")_$(echo "$note_name" | tr ' ' '-').md"
 cd "$HOME/notes/notes/inbox" || exit 1
 
 fp="$HOME/notes/notes/inbox/${fn}"
 
 touch "$fp"
 nvim "$fp"
+
