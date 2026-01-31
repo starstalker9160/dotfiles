@@ -7,11 +7,12 @@
 
 PS1='[\u@\h \W]\$ '
 
-export HYPRSHOT_DIR=~/Pictures/Screenshots/
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
 export PATH="$HOME/.local/bin:$PATH"
+export NOTES_DIR="$HOME/notes/"
 
 # ----- NOTE -----
-alias oo='cd $HOME/notes/notes/ && nvim && cd - >/dev/null'
+alias oo='cd $NOTES_DIR/notes/ && nvim && cd - >/dev/null'
 
 # ----- ALIAS -----
 alias grep='grep --color=auto'

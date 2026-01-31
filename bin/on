@@ -1,4 +1,17 @@
 #!/bin/bash
+set -euo pipefail
+
+: "${NOTES_DIR:?NOTES_DIR is not set or empty}"
+
+if [[ ! -d "$NOTES_DIR" ]]; then
+  echo "NOTES_DIR does not exist or is not a directory: $NOTES_DIR" >&2
+  exit 1
+fi
+
+if [ ! -d "$HOME/notes/" ]; then
+	echo "Error: No notes directory at HOME folder"
+	exit 1
+fi
 
 if [ -z "$1" ]; then
     read -p "Note name: " note_name
@@ -11,10 +24,8 @@ else
 fi
 
 fn="$(date "+%Y-%m-%d")_$(echo "$note_name" | tr ' ' '-').md"
-cd "$HOME/notes/notes/inbox" || exit 1
 
-fp="$HOME/notes/notes/inbox/${fn}"
+fp="$NOTES_DIR/notes/inbox/$fn"
 
 touch "$fp"
-nvim "$fp"
-
+nvim -c "cd $(printf '%q' "$NOTES_DIR/notes")" "$fp"
