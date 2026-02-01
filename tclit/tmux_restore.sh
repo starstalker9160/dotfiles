@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# CAUTION
+# this is from chatgpt, i dont trust it
+
 STATE_DIR="$HOME/.starstalker9160/tmux_states"
 
 # Iterate over each saved session file

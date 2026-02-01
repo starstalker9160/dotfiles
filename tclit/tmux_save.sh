@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# CAUTION
+# this is from chatgpt, i dont trust it
+
 # Directory to store tmux session states
 STATE_DIR="$HOME/.starstalker9160/tmux_states"
 mkdir -p "$STATE_DIR"
