@@ -21,7 +21,8 @@ alias v='nvim'
 
 # ----- TMUX -----
 alias t='tmux'
-alias ta='tmux a'
+alias ia='i a'
+alias in='i n'
 
 # ----- LS -----
 alias ls='ls --color=auto'
