@@ -51,8 +51,12 @@ source "$HOME/dotfiles/tclit/mapping.sh"
 load_map_file
 
 if [ $# -eq 0 ]; then
-	echo "no arguments supplied"
-	exit 1
+	echo "╭──tclit────────────────╮"
+	echo "│ ver: 0.1              │"
+	echo "│                       │"
+	echo "│ by star.stalker9160   │"
+	echo "╰───────────────────────╯"
+	exit 0
 fi
 
 case "$1" in
