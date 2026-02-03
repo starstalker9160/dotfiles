@@ -1,0 +1,250 @@
+#!/bin/bash
+# tclit (tmux client)
+
+is_session_exist() {
+	local session_name="$1"
+
+	if tmux has-session -t "$session_name" 2>/dev/null; then
+		return 1
+	fi
+
+	if [ -f "$HOME/.starstalker9160/tmux_states/$session_name" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
+gen_unique_session() {
+    local session_name
+
+    while :; do
+        session_name=$(printf '%07x' "$((RANDOM<<16 | RANDOM))")
+
+        if is_session_exist "$session_name"; then
+            echo "$session_name"
+            return
+        fi
+    done
+}
+
+confirm_action() {
+	echo "$1"
+	read -p "[y/n] " o
+	case "$o" in
+		[Yy]* )
+			return 0
+			;;
+		[Nn]* )
+			echo "Abort"
+			exit 0
+			;;
+		* )
+			echo "Abort"
+			exit 1
+			;;
+	esac
+
+}
+
+source "$HOME/dotfiles/tclit/mapping.sh"
+load_map_file
+
+if [ $# -eq 0 ]; then
+	echo "no arguments supplied"
+	exit 1
+fi
+
+case "$1" in
+ls)
+	# list sessions
+	echo "tmux sessions:"
+	tmux ls
+	echo ""
+	echo "mapping"
+	map_list
+	echo ""
+	echo "map size: $(map_size)"
+	exit 0
+	;;
+
+r)
+	# restore all
+	TEMP_SESSION=""
+	if ! tmux has-session 2>/dev/null ; then
+		TEMP_SESSION=$(gen_unique_session)
+		tmux new -d -s "$TEMP_SESSION"
+	fi
+	bash "$HOME/dotfiles/tclit/tmux_restore.sh"
+	[ -n "$TEMP_SESSION" ] && tmux kill-session -t "$TEMP_SESSION"
+	exit 0
+	;;
+
+a)
+	# attach
+	if [ "$#" -eq 1 ]; then
+		tmux attach && exit 0
+	elif [[ $2 =~ ^-?[0-9]+$ ]]; then
+		tmux attach -t $(map_get $2) && exit 0
+	else
+		tmux attach -t "$2" && exit 0
+	fi
+	exit 1
+	;;
+
+n)
+	# new session
+    shift
+
+	detach=false
+	cwd=""
+	name=""
+	position=null
+    append=true
+    # template=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+			-d)
+				detach=true
+				shift
+				;;
+            # -t)
+            #     template="$2"
+            #     shift 2
+            #     ;;
+			-c)
+				cwd="$2"
+				shift 2
+				;;
+            -p)
+                if [[ $2 =~ ^[1-9][0-9]*$ ]]; then
+					append=false
+                    position="$2"
+                else
+                    echo "Position must be a positive integer, got '$2'"
+                    exit 1
+                fi
+                shift 2
+				;;
+			-n)
+				append=false
+				name="$2"
+				shift 2
+				;;
+            *)
+                echo "Unknown option: $1"
+                exit 1
+                ;;
+        esac
+    done
+	
+	if [[ -n "$name" && "$position" != null ]]; then
+		echo "Cannot refer to session by both name and position"	
+		exit 1
+	fi
+
+	out=("tmux" "new")
+
+	if [ "$detach" = true ]; then
+		out+=("-d")
+	fi
+	
+	if [ -n "$cwd" ]; then
+		out+=("-c" "$cwd")
+	fi
+
+	if [ -z "$name" ]; then
+		name=$(gen_unique_session)
+	fi
+	out+=("-s" "$name")
+
+	if [ "$position" = null ]; then
+		position=$(($(map_size) + 1))
+	fi
+
+	insert_mapping_at "$position" "$name"
+	map_list | grep --color=never $name
+
+	# echo "${out[@]}"
+
+	"${out[@]}"
+
+	exit 0
+	;;
+
+d|dd)
+	# delete session
+	delete_state=true
+	if [ "$1" = "dd" ]; then
+		delete_state=false
+	fi
+
+	if [ $# -eq 1 ]; then
+		S=$(tmux list-sessions -F "#{session_name} #{session_created} #{session_attached}" \
+                 | sort -k3,3nr -k2,2nr \
+                 | head -n1 \
+                 | awk '{print $1}')
+		if [ -z "$S" ]; then
+			echo "No running sessions"
+			exit 1
+		fi
+		confirm_action "Delete most recent session? ($S)"
+		tmux kill-session -t "$S"
+		remove_value $S
+		echo "Deleted session"
+		exit 0
+	else
+		if [[ $2 =~ ^-?[0-9]+$ ]]; then
+			name=$(map_get $2)
+			if [ -z "$name" ]; then
+				echo "No session at position $2"
+				exit 1
+			else	
+				if tmux has-session -t "$name" 2>/dev/null; then
+					confirm_action "Delete session at position $2? ($name)"
+					tmux kill-session -t "$name"
+					remove_value "$name"
+					echo "Deleted session"
+					if [ "$delete_state" = false ]; then
+						confirm_action "Aditionally, delete state file? (will not be able to restore session)"
+					fi
+					rm -f "$HOME/.starstalker9160/tmux_states/$name"
+				else
+					echo "Session does not exist, deleted mapping"
+				fi
+				remove_value "$name"
+				exit 0
+			fi
+		else
+			if tmux has-session -t "$2" 2>/dev/null; then
+				confirm_action "Delete session '$2' ?"
+				tmux kill-session -t "$2"
+				echo "Deleted session"
+				if [ "$delete_state" = false ]; then
+					confirm_action "Aditionally, delete state file? (will not be able to restore session)"
+				fi
+				rm -f "$HOME/.starstalker9160/tmux_states/$2"
+				exit 0	
+			fi
+			echo "Could not find session '$2'"
+			exit 1
+		fi
+	fi
+	;;
+
+# ----- meta -----
+
+clear-mappings)
+	confirm_action "Delete mapping file?"
+	rm -f "$MAPPING_FILE"
+	echo "Deleted mapping file"
+	exit 0
+	;;
+
+*)
+	echo "Invalid argument"
+	exit 1
+	;;
+esac
+
