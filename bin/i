@@ -131,7 +131,7 @@ n)
                 fi
                 shift 2
 				;;
-			-n)
+			-s)
 				append=false
 				name="$2"
 				shift 2
@@ -143,11 +143,6 @@ n)
         esac
     done
 	
-	if [[ -n "$name" && "$position" != null ]]; then
-		echo "Cannot refer to session by both name and position"	
-		exit 1
-	fi
-
 	out=("tmux" "new")
 
 	if [ "$detach" = true ]; then
