@@ -11,3 +11,8 @@ window {
 	border: 0px;
 	cursor: "default";
 }
+
+listview {
+	dynamic: true;
+	fixed-height: false;
+}
