@@ -31,6 +31,7 @@ alias la='ls -la --color=auto'
 # ----- GIT -----
 alias gc='git clone'
 alias gs='git status'
+alias gf='git fetch'
 
 alias gd='batdiff'
 
