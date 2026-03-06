@@ -99,11 +99,11 @@ output "DP-1" {
     position x=0 y=0
 }
 
-output "HDMI-A-1" {
+output "HDMI-A-3" {
     mode "1920x1080@50.000"
     scale 1
     transform "normal"
-    position x=1920 y=0
+    // position x=1920 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -267,8 +267,11 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+// single monitor wallpaper
+spawn-sh-at-startup "swaybg -o DP-2 -i ~/Pictures/Wallpapers/NieR-Automata-10M-Sales.png -m fill"
+spawn-sh-at-startup "swaybg -o HDMI-A-3 -i ~/Pictures/Wallpapers/windows-11-dark-mode-blue-stock.jpg -m fill"
+// spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/girl-can.png -m fill"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
