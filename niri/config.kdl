@@ -100,7 +100,7 @@ output "DP-1" {
 }
 
 output "HDMI-A-3" {
-    mode "1920x1080@50.000"
+    mode "1920x1080@60.000"
     scale 1
     transform "normal"
     // position x=1920 y=0
@@ -269,7 +269,7 @@ layout {
 
 spawn-at-startup "waybar"
 // single monitor wallpaper
-spawn-sh-at-startup "swaybg -o DP-2 -i ~/Pictures/Wallpapers/NieR-Automata-10M-Sales.png -m fill"
+spawn-sh-at-startup "swaybg -o DP-2 -i ~/Pictures/Wallpapers/pink-girl.jpg -m fill"
 spawn-sh-at-startup "swaybg -o HDMI-A-3 -i ~/Pictures/Wallpapers/windows-11-dark-mode-blue-stock.jpg -m fill"
 // spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/girl-can.png -m fill"
 
