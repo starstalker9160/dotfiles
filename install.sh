@@ -2,10 +2,10 @@
 
 # TODO
 # - backup current config
-# - copy over new configs to the right places
+# - make symlinks to config files
 # - option to also install neovim configs
 # 	- clear the ~/.local/share/nvim folder if exists
-# - move over the ./bin into ~/.local/bin
+# - symlink ./bin to ~/.local/bin
 
 CWD=$(pwd)
 CONFIG_DIR="$HOME/.config/"

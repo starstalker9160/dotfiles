@@ -5,6 +5,11 @@
 
 STATE_DIR="$HOME/.starstalker9160/tmux_states"
 
+if [ -z "$(find "$STATE_DIR" -mindepth 1 -print -quit)" ]; then
+	echo "Nothing to restore"
+	exit 0
+fi
+
 # Iterate over each saved session file
 for STATE_FILE in "$STATE_DIR"/*; do
     SESSION_NAME=$(basename "$STATE_FILE")
