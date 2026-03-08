@@ -1,10 +1,10 @@
 #!/bin/bash
 
-case "$(printf "shutdown\nkill\nzzz\nreboot\nhibernate" | rofi -dmenu -i -lines 4)" in
+case "$(printf "shutdown\nreboot\nkill\nzzz\nhibernate" | rofi -dmenu -i -lines 4)" in
 	shutdown) shutdown now ;;
+	reboot) systemctl reboot -i ;;
 	kill) ps -u "$USER" -o pid,comm,%cpu,%mem | rofi -dmenu -i -p "Kill:" -lines 10 | awk '{print $1}' | xargs -r kill ;;
 	zzz) slock systemctl suspend -i ;;
-	reboot) systemctl reboot -i ;;
 	hibernate) exit 0;;
 	*) exit 1 ;;
 esac
