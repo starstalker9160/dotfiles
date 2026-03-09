@@ -16,7 +16,6 @@ alias dfc='cd $HOME/dotfiles/ && nvim'
 
 # ----- NOTE -----
 alias oo='cd $NOTES_DIR/notes/ && nvim && cd - >/dev/null'
-alias or='nvim $NOTES_DIR/notes/inbox/*.md'
 
 # ----- ALIAS -----
 alias grep='grep --color=auto'
@@ -64,5 +63,14 @@ batdiff() {
 
 ll() {
 	eza --level "${1:-1}" --color=always --color-scale=all --icons=always --tree
+}
+
+or() {
+	files=("$NOTES_DIR/notes/inbox/"*.md)
+	if [ -e "${files[0]}" ]; then
+		nvim "${files[@]}"
+	else
+		echo "Inbox is empty"
+	fi
 }
 
