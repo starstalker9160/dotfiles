@@ -3,7 +3,7 @@
 	"position": "bottom",
 	"mode": "dock",
 	"exclusive": true,
-	"passtrough": true,
+	"passthrough": false,
 	"gtk-layer-shell": true,
 	"name": "horBar",
 	"reload_style_on_change": true,
@@ -43,10 +43,9 @@
 	"network": {
 		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt'>NETWORK</span>",
 		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt'>NETWORK</span>",
-		"tooltip-format-wifi": "接続先\t\t: {essid}\n電波強度\t: {signaldBm}\n\n識別番号\t: {ipaddr}\n門先\t\t: {gwaddr}",
+		"tooltip-format-wifi": "Connected to\t\t: {essid}\nSignal strength\t: {signaldBm}\n\nIP addr\t: {ipaddr}\nGateway\t\t: {gwaddr}",
 		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
-		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt'>NETWORK</span>",
-		"on-click": "nm-connection-editor"
+		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt'>NETWORK</span>"
 	},
 
 	"wireplumber":{
