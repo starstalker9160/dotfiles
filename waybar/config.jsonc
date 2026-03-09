@@ -43,7 +43,7 @@
 	"network": {
 		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt'>NETWORK</span>",
 		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt'>NETWORK</span>",
-		"tooltip-format-wifi": "Connected to\t\t: {essid}\nSignal strength\t: {signaldBm}\n\nIP addr\t: {ipaddr}\nGateway\t\t: {gwaddr}",
+		"tooltip-format-wifi": "Connected to — {essid}\nIP addr — {ipaddr}",
 		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
 		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt'>NETWORK</span>"
 	},
