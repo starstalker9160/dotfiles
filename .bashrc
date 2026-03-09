@@ -11,8 +11,12 @@ export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
 export PATH="$HOME/.local/bin:$PATH"
 export NOTES_DIR="$HOME/notes/"
 
+alias nvc='cd $HOME/.config/nvim/ && nvim'
+alias dfc='cd $HOME/dotfiles/ && nvim'
+
 # ----- NOTE -----
 alias oo='cd $NOTES_DIR/notes/ && nvim && cd - >/dev/null'
+alias or='nvim $NOTES_DIR/notes/inbox/*.md'
 
 # ----- ALIAS -----
 alias grep='grep --color=auto'
