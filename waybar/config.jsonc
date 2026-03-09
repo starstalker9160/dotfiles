@@ -1,89 +1,102 @@
 {
-    "position": "bottom",
-    "layer": "top",
-    "exclusive": false,
-    "start_hidden": true,
-    "reload_style_on_change": true,
-    "height": 24,
-    "modules-left": [
-        "niri/workspaces",
-        "niri/window",
-    ],
-    "modules-center": [
-        "clock",
-    ],
-    "modules-right": [
-        "tray",
-        "network",
-	"cpu",
-	"memory",
-        "battery",
-    ],
+	"layer": "top",
+	"position": "bottom",
+	"mode": "dock",
+	"exclusive": true,
+	"passtrough": true,
+	"gtk-layer-shell": true,
+	"name": "horBar",
+	"reload_style_on_change": true,
+	"fixed-center": true,
 
-    "niri/window": {
-        "format": "{title}",
-	"max-length": 50,
-        "tooltip": false,
-        "seperate-outputs": true,
-    },
+	"modules-left": [
+		"idle_inhibitor",
+		"custom/space",
+		"network",
+		"custom/space",
+		"wireplumber",
+		"custom/space",
+		"custom/updates"
+	],
 
-    "clock": {
-        "format": "{:%B %d, %H:%M}",
-        "tooltip-format": "{:%A, %Y (%S)}",
-        "interval": 1,
-        "on-click": "fuzzel --no-icons",
-	"on-click-right": "fuzzel-logout-menu"
-    },
+	"modules-center": [
+		"clock"
+	],
 
-    "mpris": {
-        "format": "󰎇 {dynamic}",
-        "dynamic-order": ["artist", "title"],
-        "max-length": 30,
-	"tooltip-format": "{status}",
-        "on-scroll-up": "playerctl volume 0.10+",
-        "on-scroll-down": "playerctl volume 0.10-",
-    },
+	"modules-right": [
+		"niri/workspaces"
+	],
 
-    "tray": {
-        "icon-size": 14,
-        "spacing": 12,
-    },
+	"custom/space": {
+		"format": "<span color='#404042'> </span>",
+		"tooltip": false
+	},
 
-    "network": {
-    	"interval": 5,
-        "format": "{ifname}",
-        "format-wifi": "{icon} {essid}",
-        "format-ethernet": " {ifname}",
-        "format-disconnected": "󰤮 disconnected",
-        "format-disabled": "󰤭 disabled",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "tooltip-format": "{ifname} - {ipaddr}\nDown Speed: {bandwidthDownBytes}\nUp Speed: {bandwidthUpBytes}",
-        "on-click-right": "foot nmtui",
-    },
+	"idle_inhibitor": {
+		"format": "{icon}\n<span size='6pt'>CAFFEINE</span>",
+		"format-icons": {
+			"activated": "<span color='#B7416E'>INJ</span>",
+			"deactivated": "CUT"
+		}
+	},
 
-    "cpu": {
-	"interval": 10,
-	"format": " {usage}%",
-	"max-length": 10,
-	"on-click-right": "foot btop",
-    },
+	"network": {
+		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt'>NETWORK</span>",
+		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt'>NETWORK</span>",
+		"tooltip-format-wifi": "接続先\t\t: {essid}\n電波強度\t: {signaldBm}\n\n識別番号\t: {ipaddr}\n門先\t\t: {gwaddr}",
+		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
+		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt'>NETWORK</span>",
+		"on-click": "nm-connection-editor"
+	},
 
-    "memory": {
-	"interval": 10,
-	"format": " {}%",
-	"max-length": 10,
-	"on-click-right": "foot btop",
-    },
+	"wireplumber":{
+		"format": "{volume}%\n<span size='6pt'>VOLUME</span>",
+		"format-muted": "切\n<span size='6pt'>VOLUME</span>",
+		"on-click": "helvum",
+		"max-volume": 150,
+		"scroll-step": 0.2
+	},
 
-    "battery": {
-        "format": "{icon} {capacity}",
-        "format-charging": "󰂄 {capacity}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "{timeTo}",
-        "states": {
-            "warning": 30,
-            "critical": 10
-        },
-        "interval": 30,
-    }
+	"custom/updates": {
+		"format": "{icon}\n<span size='6pt'>SYS_UPDATE</span>",
+		"return-type": "json",
+		"format-icons": {
+			"has-updates": "<span color='#B7416E'>AVAI</span>",
+			"updated": "UPDT"
+		},
+		"exec-if": "which waybar-module-pacman-updates",
+		"exec": "waybar-module-pacman-updates --no-zero-output --color-semver-updates --tooltip-align-columns --no-aur"
+	},
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%H:%M:%S}\n<span size='6pt'>CUR_TIME</span>",
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"calendar": {
+			"mode": "month",
+			"weeks-pos": "",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span size='15pt'><b>/// {}\n</b></span>", 
+				"days": "<span size='12pt'><b>{}</b></span>", 
+				"weeks": "<span size='12pt'><b>{}</b></span>", 
+				"weekdays": "<span size='12pt'><b>{}</b></span>", 
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-scroll-up": "shift_down",
+			"on-scroll-down": "shift_up"
+		}
+	},
+
+	"niri/workspaces": {
+		"format": "{icon}\n<span size='6pt'>Workspace</span>",
+		"format-icons": {
+			"default": "ー",
+			"focused": "HERE",
+			"active": "DIFOUT"
+		}
+	}
 }
+
