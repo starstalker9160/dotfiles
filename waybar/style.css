@@ -12,6 +12,8 @@ window#waybar {
 }
 
 tooltip {
+	font-weight: normal;
+	color: #fff1ce;
 	background: #000000;
 	border-radius: 0px;
 }

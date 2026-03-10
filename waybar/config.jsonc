@@ -41,8 +41,8 @@
 	},
 
 	"network": {
-		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt'>NETWORK</span>",
-		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt'>NETWORK</span>",
+		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt'>NETWORK \uf1eb</span>",
+		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt'>NETWORK \udb80\ude00</span>",
 		"tooltip-format-wifi": "Connected to — {essid}\nIP addr — {ipaddr}",
 		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
 		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt'>NETWORK</span>"
@@ -52,6 +52,7 @@
 		"format": "{volume}%\n<span size='6pt'>VOLUME</span>",
 		"format-muted": "切\n<span size='6pt'>VOLUME</span>",
 		"on-click": "helvum",
+		"tooltip": false,
 		"max-volume": 150,
 		"scroll-step": 0.2
 	},
@@ -60,11 +61,11 @@
 		"format": "{icon}\n<span size='6pt'>SYS_UPDATE</span>",
 		"return-type": "json",
 		"format-icons": {
-			"has-updates": "<span color='#B7416E'>AVAI</span>",
-			"updated": "UPDT"
+			"has-updates": "<span color='#B7416E'>AVAI \udb80\udda7</span>",
+			"updated": "UPDT \udb85\udc1d"
 		},
 		"exec-if": "which waybar-module-pacman-updates",
-		"exec": "waybar-module-pacman-updates --no-zero-output --color-semver-updates --tooltip-align-columns --no-aur"
+		"exec": "waybar-module-pacman-updates --no-zero-output --color-semver-updates --tooltip-align-columns"
 	},
 
 	"clock": {

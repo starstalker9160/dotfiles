@@ -62,7 +62,18 @@ batdiff() {
 }
 
 ll() {
-	eza --level "${1:-1}" --color=always --color-scale=all --icons=always --tree
+    local d=1
+    local p="."
+
+    for arg in "$@"; do
+        if [[ "$arg" =~ ^[0-9]+$ ]]; then
+            d="$arg"
+        else
+            p="$arg"
+        fi
+    done
+
+    eza --level "$d" --color=always --color-scale=all --icons=always --tree "$p"
 }
 
 or() {
