@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sel=$(cliphist list | rofi -dmenu -displaycolumns 2) || exit
+cliphist decode <<< "$sel" | wl-copy
+sleep 0.15
+wtype -M ctrl -k v -m ctrl

@@ -561,6 +561,8 @@ binds {
 	// TODO
 	// add clipboard thing to mod+v
 
+	Mod+V repeat=false { spawn-sh "~/.local/bin/clipboard"; }
+
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
