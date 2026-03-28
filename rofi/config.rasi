@@ -1,0 +1,26 @@
+configuration {
+	display-drun: "";
+	disable-history: false;
+	drun-display-format: "{name}";
+}
+
+window {
+	location: center;
+	anchor: center;
+	fullscreen: false;
+	width: 900px;
+	x-offset: 0px;
+	y-offset: 0px;
+
+	enabled: true;
+	margin: 0px;
+	border: 0px;
+	cursor: "default";
+}
+
+listview {
+	dynamic: true;
+	fixed-height: false;
+}
+
+@theme "~/.config/rofi/android_notification.rasi"

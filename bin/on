@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ -z "${NOTES_DIR:-}" || ! -d "$NOTES_DIR" ]]; then
+  echo "Error: NOTES_DIR is unset, empty, or not a directory"
+fi
+
+if [ -z "$1" ]; then
+    read -p "Note name: " note_name
+    if [ -z "$note_name" ]; then
+        echo "Error: Note name required"
+        exit 1
+    fi
+else
+    note_name="$*"
+fi
+
+fn="$(date "+%Y-%m-%d")_$(echo "$note_name" | tr ' ' '-').md"
+
+fp="$NOTES_DIR/notes/inbox/$fn"
+
+touch "$fp"
+nvim -c "cd $(printf '%q' "$NOTES_DIR/notes")" "$fp"

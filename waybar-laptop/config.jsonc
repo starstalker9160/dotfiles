@@ -1,0 +1,157 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "mode": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "name": "horBar",
+    "reload_style_on_change": true,
+    "fixed-center": true,
+
+    "modules-left": [
+		"idle_inhibitor",
+		"custom/space",
+		"network",
+		"custom/space",
+		"wireplumber",
+		"custom/space",
+		"battery",
+		"custom/space",
+		"custom/updates",
+		"custom/space",
+		"group/left"
+    ],
+
+    "modules-center": [
+		"clock"
+    ],
+
+    "modules-right": [
+		"niri/workspaces"
+    ],
+    
+	"custom/space": {
+    	"format": "<span color='#404042'> </span>",
+		"tooltip": false
+    },
+    
+	"idle_inhibitor": {
+    	"format": "{icon}\n<span size='6pt' color='#696969'>CAFFEINE</span>",
+		"format-icons": {
+			"activated": "<span color='#B7416E'>INJ</span>",
+			"deactivated": "CUT"
+		}
+    },
+
+	"network": {
+		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK \uf1eb</span>",
+		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK \udb80\ude00</span>",
+		"tooltip-format-wifi": "CONN TO  —  {essid}\nIP_ADDR   —  {ipaddr}",
+		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
+		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt' color='#696969'>NETWORK</span>"
+	},
+
+	"wireplumber":{
+		"format": "{volume}%\n<span size='6pt' color='#696969'>VOLUME</span>",
+		"format-muted": "MUTE\n<span size='6pt' color='#696969'>VOLUME</span>",
+		"tooltip": false,
+		"max-volume": 150,
+		"scroll-step": 2
+	},
+
+    "battery": {
+    	"bat": "BAT0",
+		"interval": 30,
+		"states": {
+			"default": 100,
+			"warning": 95,
+			"critical": 25
+		},
+		"format": "PLUG\n<span size='6pt' color='#696969'>POWER</span>",
+		"format-charging": "+{capacity}%\n<span size='6pt' color='#696969'>POWER</span>",
+		"format-discharging": "<span color='#B7416E'>D/PL</span>\n<span size='6pt' color='#696969'>POWER</span>"
+    },
+
+	"custom/updates": {
+		"format": "{icon}\n<span size='6pt' color='#696969'>SYS_UPDATE</span>",
+		"return-type": "json",
+		"format-icons": {
+			"has-updates": "<span color='#B7416E'>AVAI \udb80\udda7</span>",
+			"updated": "UPDT \udb85\udc1d"
+		},
+		"exec-if": "which waybar-module-pacman-updates",
+		"exec": "waybar-module-pacman-updates --no-aur --no-zero-output --arrow-style ➤ --color-semver-updates F15D22,FFCE51,73C48F,48B9C7,88807C --column-color-overrides '3=EEEEEC,4=AD7FA8' --tooltip-align-columns --interval-seconds 10 --network-interval-seconds 300"
+	},
+
+    "group/left": {
+    	"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true,
+			"click-to-reveal": true
+		},
+		"modules": [
+			"custom/space",
+			"custom/cpuhistory",
+			"custom/space",
+			"memory",
+			"custom/space",
+			"tray"
+		]
+    },
+
+    "custom/cpuhistory": {
+    	"exec": "~/dotfiles/waybar-laptop/scripts/cpu_history.py -d 30",
+		"format": "{}\n<span size='6pt' color='#696969'>C_USAGE</span>",
+		"interval": 1,
+		"return-type": "json",
+		"on-click": "~/dotfiles/waybar-laptop/scripts/cpu_history.py toggle"
+    },
+
+    "memory": {
+    	"interval": 1,
+		"format": "{}%\n<span size='6pt' color='#696969'>M_USAGE</span>"
+    },
+
+    "tray": {
+        "icon-size": 14,
+		"show-passive-items": true,
+		"spacing": 16,
+		"reverse-direction": true,
+		"smooth-scrolling-threshold": 2
+    },
+
+	"clock": {
+		"interval": 1,
+		"cursor": false,
+		"format": "{:%H:%M:%S}\n<span size='6pt' color='#696969'>CUR_TIME</span>",
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"calendar": {
+			"mode": "month",
+			"weeks-pos": "",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span size='15pt'><b>//{}\n</b></span>", 
+				"days": "<span size='12pt'><b>{}</b></span>", 
+				"weeks": "<span size='12pt'><b>{}</b></span>", 
+				"weekdays": "<span size='12pt'><b>{}</b></span>", 
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-scroll-up": "shift_down",
+			"on-scroll-down": "shift_up"
+		}
+	},
+
+	"niri/workspaces": {
+		"cursor": true,
+		"format": "{icon}\n<span size='6pt'>Workspace</span>",
+		"format-icons": {
+			"default": "—",
+			"focused": "HERE",
+			"active": "DIFOUT"
+		}
+	}
+}

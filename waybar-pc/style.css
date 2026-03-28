@@ -1,0 +1,46 @@
+* {
+	font-size: 12px;
+	font-family: UDEV Gothic HSLG;
+	font-weight: Bold;
+	min-height: 0;
+	padding: 2px;
+}
+
+window#waybar {
+	margin: 10px;
+	background: #000000;
+}
+
+tooltip, tooltip * {
+    font-family: "SF Pro Display", sans-serif;
+	font-weight: 400;
+	background: #000000;
+	border-radius: 0px;
+}
+
+#workspaces {
+	border: 0.5pt solid #000000;
+}
+
+#workspaces button {
+	color: #696969;
+	border-radius: 0px;
+	transition: all 0s;
+}
+
+#workspaces button.active {
+	color: #c9b03e;
+}
+
+#workspaces button.focused {
+	color: #c9b03e;
+}
+
+#workspaces button.urgent {
+	color: #f38ba8;
+}
+
+#workspaces button:hover {
+	border: 0.5pt solid #c9b03e;
+	background: inherit;
+}

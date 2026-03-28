@@ -1,0 +1,18 @@
+#!/bin/bash
+
+sel=$(cliphist list | rofi -dmenu \
+    -display-columns 2 \
+    -kb-custom-1 Control+Delete)
+
+ret=$?
+
+if [ "$ret" -eq 10 ]; then
+    cliphist wipe
+    exit
+fi
+
+[ -z "$sel" ] && exit
+
+cliphist decode <<< "$sel" | wl-copy
+sleep 0.15
+wtype -M ctrl -k v -m ctrl

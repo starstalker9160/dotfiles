@@ -1,0 +1,93 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='[\u@\h \W]\$ '
+
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:$PATH"
+export NOTES_DIR="$HOME/notes/"
+
+alias nvc='cd $HOME/.config/nvim/ && nvim'
+alias dfc='cd $HOME/dotfiles/ && nvim'
+
+# ----- NOTE -----
+alias oo='cd $NOTES_DIR/notes/ && nvim && cd - >/dev/null'
+
+# ----- ALIAS -----
+alias grep='grep --color=auto'
+alias cat='bat --color=always'
+alias v='nvim'
+
+# ----- TMUX -----
+alias t='tmux'
+alias ia='i a'
+alias in='i n'
+
+# ----- LS -----
+alias ls='ls --color=auto'
+alias la='ls -la --color=auto'
+
+# ----- GIT -----
+alias gc='git clone'
+alias gs='git status'
+alias gf='git fetch'
+
+alias gd='batdiff'
+
+# ----- FZF -----
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons=always {} | head -200'"
+
+_fzf_compgen_path() {
+	fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+	fd --type=d --hidden --exclude .git . "$1"
+}
+
+# ----- VULKAN -----
+vulkansdk() {
+	if ! vulkaninfo >/dev/null 2>&1; then
+		source ~/vulkansdk/1.4.341.1/setup-env.sh
+	fi
+}
+
+# ----- FUNCS -----
+batdiff() {
+    git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff
+}
+
+ll() {
+    local d=1
+    local p="."
+
+    for arg in "$@"; do
+        if [[ "$arg" =~ ^[0-9]+$ ]]; then
+            d="$arg"
+        else
+            p="$arg"
+        fi
+    done
+
+    eza --level "$d" --color=always --color-scale=all --icons=always --tree "$p"
+}
+
+or() {
+	files=("$NOTES_DIR/notes/inbox/"*.md)
+	if [ -e "${files[0]}" ]; then
+		nvim "${files[@]}"
+	else
+		echo "Inbox is empty"
+	fi
+}
+
