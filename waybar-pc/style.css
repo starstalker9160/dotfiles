@@ -1,7 +1,8 @@
 * {
 	font-size: 12px;
-	font-family: UDEV Gothic HSLG;
-	font-weight: Bold;
+	font-family: 'UDEV Gothic 35NFLG', monospace;
+	font-style: normal;
+	font-weight: 700;
 	min-height: 0;
 	padding: 2px;
 }
