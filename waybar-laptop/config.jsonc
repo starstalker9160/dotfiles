@@ -45,8 +45,8 @@
     },
 
 	"network": {
-		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK \uf1eb</span>",
-		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK \udb80\ude00</span>",
+		"format-wifi": "<span color='#c9b03e'>WLES({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK</span>",
+		"format-ethernet": "<span color='#c9b03e'>LAN({ifname})</span>\n<span size='6pt' color='#696969'>NETWORK</span>",
 		"tooltip-format-wifi": "CONN TO  —  {essid}\nIP_ADDR   —  {ipaddr}",
 		"tooltip-format-ethernet": "IFNAME: {ifname}\nADDRESS: {ipaddr}",
 		"format-disconnected": "<span color='#B7416E'>D/SC</span>\n<span size='6pt' color='#696969'>NETWORK</span>"
