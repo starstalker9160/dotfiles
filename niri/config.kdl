@@ -365,6 +365,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open terminal" { spawn "foot"; }
 	Mod+B { spawn "google-chrome-stable"; }
+	Mod+Shift+B { spawn "google-chrome-stable" "--incognito"; }
 	Mod+E hotkey-overlay-title="Open file explorer" { spawn "thunar"; }
 
     Alt+Space hotkey-overlay-title="App launcher" { spawn-sh "pkill rofi || rofi -show drun"; }
