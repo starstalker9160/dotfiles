@@ -500,7 +500,7 @@ binds {
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
 
-    Mod+F { maximize-column; }
+    Mod+Up { maximize-column; }
     Alt+Return { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
